@@ -21,8 +21,9 @@ namespace CandiateTesting.JeffersonBompadre.CDNConvert.Domain.Handlers
         {
             var cdnContent = await _cdnRequest.GetCDNContent(cdnUrl);
             if (string.IsNullOrEmpty(cdnContent))
-                throw new Exception("Nenhum conteúdo retornado. Não possível gerar o arquivo");
-            var cdnNewFile = await _fileContent.SaveFile(cdnContent, outPutPath);
+                throw new Exception("Nenhum conteúdo retornado. Não foi possível gerar o arquivo");
+            var cdnContentConverted = await _cdnConvertStandard.ConvertMinhaCDNToAgoraFormat(cdnContent);
+            var cdnNewFile = await _fileContent.SaveFile(cdnContentConverted, outPutPath);
             return cdnNewFile;
         }
     }

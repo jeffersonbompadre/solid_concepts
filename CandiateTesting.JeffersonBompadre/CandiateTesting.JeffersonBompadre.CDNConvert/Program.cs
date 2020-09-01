@@ -19,11 +19,18 @@ namespace CandiateTesting.JeffersonBompadre.CDNConvert
             if (args.Count() > 1 && !string.IsNullOrEmpty(args[1]))
                 outPutPath = args[1];
 
-            // Inicializa o Handler de Conversão e executa o processo
-            var cdnConvert = BootstrapInjection.GetServiceCollection().GetService<ICDNConvertHandler>();
-            var task = Task.Run(async () => await cdnConvert.ConvertPattern(cdnURL, outPutPath));
-            var content = task.Result;
-            Console.WriteLine($"Arquivo gerado em {content}");
+            try
+            {
+                // Inicializa o Handler de Conversão e executa o processo
+                var cdnConvert = BootstrapInjection.GetServiceCollection().GetService<ICDNConvertHandler>();
+                var task = Task.Run(async () => await cdnConvert.ConvertPattern(cdnURL, outPutPath));
+                var content = task.Result;
+                Console.WriteLine($"Arquivo gerado em {content}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Algum erro inesperado ocorreu. {ex.Message}");
+            }
 
             Console.ReadKey();
         }
