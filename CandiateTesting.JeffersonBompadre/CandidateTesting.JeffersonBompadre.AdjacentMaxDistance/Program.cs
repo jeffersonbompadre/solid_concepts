@@ -1,4 +1,8 @@
-﻿using System;
+﻿using CandidateTesting.JeffersonBompadre.AdjacentMaxDistance.Configuration;
+using CandidateTesting.JeffersonBompadre.AdjacentMaxDistance.Domain.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,26 +13,38 @@ namespace CandidateTesting.JeffersonBompadre.AdjacentMaxDistance
     {
         static void Main(string[] args)
         {
-            int[] arr = MountArray();
-            var maxDistance = AdjacentMaxDistance(arr);
-            Console.WriteLine(maxDistance);
+            //MountDataArray();
+            AdjacentMaxDistance(MountArray());
             Console.ReadKey();
         }
 
+        static void MountDataArray()
+        {
+            var seedValues = BootstrapInjection.GetServiceCollection().GetService<ISeedValuesInArrayHandler>();
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+            var task = Task.Run(async () => await seedValues.SeedValues(8));
+            var qtdeRecords = task.Result;
+            stopWatch.Stop();
+            var ts = stopWatch.Elapsed;
+            var elapsedTime = string.Format("{0:00}:{1:00}:{2:00}.{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+            Console.WriteLine($"Registros: {qtdeRecords}, Tempo: {elapsedTime}");
+        }
+
+
+
+
+
+
         public static int[] MountArray()
         {
-            var adjacentArray = new int[1000];
-            var ramdom = new Random();
-            Parallel.For(0, adjacentArray.Length, x =>
-            {
-                adjacentArray[x] = ramdom.Next(400000);
-            });
-            return adjacentArray;
-            //return new int[] { 0, 3, 3, 7, 5, 3, 11, 1 };
+            return new int[] { 0, 3, 3, 7, 5, 3, 11, 1 };
         }
 
         public static int AdjacentMaxDistance(int[] adjacentArray)
         {
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
             var max = 0;
             Parallel.For(0, adjacentArray.Length - 1, x =>
             {
@@ -54,6 +70,10 @@ namespace CandidateTesting.JeffersonBompadre.AdjacentMaxDistance
                     }
                 });
             });
+            stopWatch.Stop();
+            var ts = stopWatch.Elapsed;
+            var elapsedTime = string.Format("{0:00}:{1:00}:{2:00}.{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+            Console.WriteLine($"Maior distância: {max}, Tempo: {elapsedTime}");
             return max;
         }
     }
