@@ -2,6 +2,8 @@
 using CandidateTesting.JeffersonBompadre.AdjacentMaxDistance.Domain.Model;
 using CandidateTesting.JeffersonBompadre.AdjacentMaxDistance.Repositories.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CandidateTesting.JeffersonBompadre.AdjacentMaxDistance.Repositories
@@ -24,6 +26,14 @@ namespace CandidateTesting.JeffersonBompadre.AdjacentMaxDistance.Repositories
         public async Task<ValueInArray> GetByValue(int value)
         {
             return await _dataContext.ValueInArray.FirstOrDefaultAsync(x => x.Value == value);
+        }
+
+        public async Task<List<int>> GetValuesBetween(int beginValue, int endValue)
+        {
+            return await _dataContext.ValueInArray
+                .Where(v => v.Value > beginValue && v.Value < endValue)
+                .Select(x => x.Value)
+                .ToListAsync();
         }
     }
 }

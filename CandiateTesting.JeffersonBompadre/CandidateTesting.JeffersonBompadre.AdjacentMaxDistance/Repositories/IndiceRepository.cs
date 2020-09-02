@@ -2,6 +2,8 @@
 using CandidateTesting.JeffersonBompadre.AdjacentMaxDistance.Domain.Model;
 using CandidateTesting.JeffersonBompadre.AdjacentMaxDistance.Repositories.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CandidateTesting.JeffersonBompadre.AdjacentMaxDistance.Repositories
@@ -24,6 +26,19 @@ namespace CandidateTesting.JeffersonBompadre.AdjacentMaxDistance.Repositories
         public async Task<Indice> GetIndice(int indiceId)
         {
             return await _dataContext.Indice.FirstOrDefaultAsync(x => x.Id == indiceId);
+        }
+
+        public async Task<int> GetTotalRecords()
+        {
+            return await _dataContext.Indice.CountAsync();
+        }
+
+        public async Task<List<Indice>> GetPairPAndQ(List<int> indices)
+        {
+            return await _dataContext.Indice
+                .Where(x => indices.Contains(x.Id))
+                .Include(x => x.ValueInArray)
+                .ToListAsync();
         }
     }
 }

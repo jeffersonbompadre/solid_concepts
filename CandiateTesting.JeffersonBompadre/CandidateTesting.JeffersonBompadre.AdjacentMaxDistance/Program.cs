@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CandidateTesting.JeffersonBompadre.AdjacentMaxDistance
@@ -14,6 +13,7 @@ namespace CandidateTesting.JeffersonBompadre.AdjacentMaxDistance
         static void Main(string[] args)
         {
             //MountDataArray();
+            AdjacentMaxDistanceFromBase();
             AdjacentMaxDistance(MountArray());
             Console.ReadKey();
         }
@@ -31,10 +31,20 @@ namespace CandidateTesting.JeffersonBompadre.AdjacentMaxDistance
             Console.WriteLine($"Registros: {qtdeRecords}, Tempo: {elapsedTime}");
         }
 
+        static void AdjacentMaxDistanceFromBase()
+        {
+            var calcAdjacent = BootstrapInjection.GetServiceCollection().GetService<ICalcAdjacentValueHandler>();
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+            var task = Task.Run(async () => await calcAdjacent.CalcAdjacentMaxDistance());
+            var maxValue = task.Result;
+            stopWatch.Stop();
+            var ts = stopWatch.Elapsed;
+            var elapsedTime = string.Format("{0:00}:{1:00}:{2:00}.{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+            Console.WriteLine($"Maior distância (DB): {maxValue}, Tempo: {elapsedTime}");
+        }
 
-
-
-
+        #region Method Calc Adjacent Value From Array
 
         public static int[] MountArray()
         {
@@ -76,5 +86,7 @@ namespace CandidateTesting.JeffersonBompadre.AdjacentMaxDistance
             Console.WriteLine($"Maior distância: {max}, Tempo: {elapsedTime}");
             return max;
         }
+
+        #endregion
     }
 }

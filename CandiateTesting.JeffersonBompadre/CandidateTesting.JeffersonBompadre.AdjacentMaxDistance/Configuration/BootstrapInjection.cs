@@ -23,6 +23,7 @@ namespace CandidateTesting.JeffersonBompadre.AdjacentMaxDistance.Configuration
             services.AddScoped<IIndiceRepository, IndiceRepository>();
             services.AddScoped<IValuesInArrayRepository, ValuesInArrayRepository>();
             services.AddScoped<ISeedValuesInArrayHandler, SeedValuesInArrayHandler>();
+            services.AddScoped<ICalcAdjacentValueHandler, CalcAdjacentValueHandler>();
 
             return services.BuildServiceProvider();
         }
