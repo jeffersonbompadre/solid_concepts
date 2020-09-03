@@ -10,7 +10,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\Backend_-_Dev_Technical_Test.pdf = Documentation\Backend_-_Dev_Technical_Test.pdf
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateTesting.JeffersonBompadre.AdjacentMaxDistance", "CandidateTesting.JeffersonBompadre.AdjacentMaxDistance\CandidateTesting.JeffersonBompadre.AdjacentMaxDistance.csproj", "{30ABEB4F-BFEB-4664-94FD-505D0D32F0F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CandidateTesting.JeffersonBompadre.AdjacentMaxDistance", "CandidateTesting.JeffersonBompadre.AdjacentMaxDistance\CandidateTesting.JeffersonBompadre.AdjacentMaxDistance.csproj", "{30ABEB4F-BFEB-4664-94FD-505D0D32F0F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Executables", "Executables", "{B76242D7-029C-4404-9F82-E3E8BD4C2072}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdjacentMaxDistance", "AdjacentMaxDistance", "{0AC556A0-8C26-442F-925D-7139FE7D430A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CDNConvert", "CDNConvert", "{28C14DCF-904F-47EA-A3AD-62E0C00C1C92}"
+	ProjectSection(SolutionItems) = preProject
+		Executables\CDNConvert\CDNConvert.deps.json = Executables\CDNConvert\CDNConvert.deps.json
+		Executables\CDNConvert\CDNConvert.dll = Executables\CDNConvert\CDNConvert.dll
+		Executables\CDNConvert\CDNConvert.exe = Executables\CDNConvert\CDNConvert.exe
+		Executables\CDNConvert\CDNConvert.pdb = Executables\CDNConvert\CDNConvert.pdb
+		Executables\CDNConvert\CDNConvert.runtimeconfig.dev.json = Executables\CDNConvert\CDNConvert.runtimeconfig.dev.json
+		Executables\CDNConvert\CDNConvert.runtimeconfig.json = Executables\CDNConvert\CDNConvert.runtimeconfig.json
+		Executables\CDNConvert\Microsoft.Extensions.DependencyInjection.Abstractions.dll = Executables\CDNConvert\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+		Executables\CDNConvert\Microsoft.Extensions.DependencyInjection.dll = Executables\CDNConvert\Microsoft.Extensions.DependencyInjection.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +45,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0AC556A0-8C26-442F-925D-7139FE7D430A} = {B76242D7-029C-4404-9F82-E3E8BD4C2072}
+		{28C14DCF-904F-47EA-A3AD-62E0C00C1C92} = {B76242D7-029C-4404-9F82-E3E8BD4C2072}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C6C0487E-C3F8-4CB0-A93B-0A7D58B2737A}

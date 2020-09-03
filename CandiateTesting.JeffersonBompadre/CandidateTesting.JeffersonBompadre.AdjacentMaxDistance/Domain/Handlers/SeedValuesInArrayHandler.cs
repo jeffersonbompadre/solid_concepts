@@ -29,7 +29,7 @@ namespace CandidateTesting.JeffersonBompadre.AdjacentMaxDistance.Domain.Handlers
             {
                 await Task.Run(async () =>
                 {
-                    var value = random.Next(400000);
+                    var value = random.Next(1, 40000);
                     var indice = await _indiceRepository.GetIndice(i);
                     if (indice == null)
                     {

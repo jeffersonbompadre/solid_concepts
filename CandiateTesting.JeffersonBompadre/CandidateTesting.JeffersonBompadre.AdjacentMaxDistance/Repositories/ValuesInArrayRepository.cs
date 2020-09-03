@@ -27,13 +27,5 @@ namespace CandidateTesting.JeffersonBompadre.AdjacentMaxDistance.Repositories
         {
             return await _dataContext.ValueInArray.FirstOrDefaultAsync(x => x.Value == value);
         }
-
-        public async Task<List<int>> GetValuesBetween(int beginValue, int endValue)
-        {
-            return await _dataContext.ValueInArray
-                .Where(v => v.Value > beginValue && v.Value < endValue)
-                .Select(x => x.Value)
-                .ToListAsync();
-        }
     }
 }

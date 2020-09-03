@@ -11,14 +11,21 @@ namespace CandidateTesting.JeffersonBompadre.AdjacentMaxDistance.Configuration
 {
     public static class BootstrapInjection
     {
+        /// <summary>
+        /// Metodo que injeta as dependências e retorna a implementação da Interface desejada
+        /// </summary>
+        /// <returns></returns>
         public static IServiceProvider GetServiceCollection()
         {
+            var dbLocation = "Data Source=ArrayValues.db";
+
             IServiceCollection services = new ServiceCollection();
 
             services.AddDbContext<DataContext>(options =>
-                options.UseSqlite("Data Source=ArrayValues.db")
+                options.UseSqlite(dbLocation)
             );
 
+            services.AddSingleton<IQueryRepository>(x => new QueryRepository(dbLocation));
             services.AddScoped<IUnitDataContext, UnitDataContext>();
             services.AddScoped<IIndiceRepository, IndiceRepository>();
             services.AddScoped<IValuesInArrayRepository, ValuesInArrayRepository>();
