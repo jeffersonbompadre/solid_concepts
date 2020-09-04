@@ -23,7 +23,7 @@
     <None Update="SQLiteDataBase\ArrayValues-Empty.db">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
-    <None Update="SQLiteDataBase\ArrayValues.db">
+    <None Update="SQLiteDataBase\ArrayValues130K.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
